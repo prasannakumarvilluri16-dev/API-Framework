@@ -1,0 +1,2 @@
+firstname,lastname,totalprice,depositpaid,checkin,checkout,additionalneeds,expectedStatus
+Jane,Doe,100,true,2025-01-01,2025-01-05,Breakfast,200
