@@ -66,20 +66,23 @@ export async function readExcel(filePath: string, sheetName?: string): Promise<A
     }
 
     const headerRow = worksheet.getRow(1);
-    const headers = headerRow.values
-      .slice(1)
-      .map((header) => String(header ?? '').trim());
+    const headers: string[] = [];
+    for (let colIndex = 1; colIndex <= headerRow.cellCount; colIndex++) {
+      const cellValue = headerRow.getCell(colIndex).value;
+      const header = String(cellValue ?? '').trim();
+      if (header) headers.push(header);
+    }
 
     const rows: Array<Record<string, any>> = [];
     worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
       if (rowNumber === 1) return;
-      const values = row.values.slice(1);
       const rowObj: Record<string, any> = {};
       let hasValue = false;
-      for (let j = 0; j < headers.length; j++) {
-        const key = headers[j];
+      for (let colIndex = 1; colIndex <= headers.length; colIndex++) {
+        const key = headers[colIndex - 1];
         if (!key) continue;
-        const value = values[j] ?? '';
+        const cellValue = row.getCell(colIndex).value;
+        const value = cellValue ?? '';
         rowObj[key] = value;
         if (value !== '' && value != null) {
           hasValue = true;
