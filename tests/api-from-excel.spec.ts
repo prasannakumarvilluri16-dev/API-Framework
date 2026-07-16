@@ -17,25 +17,27 @@ if (fs.existsSync(xlsxPath)) {
   throw new Error('No test data file found: expected testdata.xlsx or testdata.csv in tests/data');
 }
 
-const rows = readExcel(dataFile, 'Sheet1');
+(async () => {
+  const rows = await readExcel(dataFile, 'Sheet1');
 
-for (const row of rows) {
-  test(`create booking for ${row.firstname}`, async ({ request }) => {
-    const payload = {
-      firstname: String(row.firstname),
-      lastname: String(row.lastname),
-      totalprice: Number(row.totalprice || 0),
-      depositpaid: row.depositpaid === true || String(row.depositpaid).toLowerCase() === 'true',
-      bookingdates: {
-        checkin: String(row.checkin),
-        checkout: String(row.checkout)
-      },
-      additionalneeds: String(row.additionalneeds || '')
-    };
+  for (const row of rows) {
+    test(`create booking for ${row.firstname}`, async ({ request }) => {
+      const payload = {
+        firstname: String(row.firstname),
+        lastname: String(row.lastname),
+        totalprice: Number(row.totalprice || 0),
+        depositpaid: row.depositpaid === true || String(row.depositpaid).toLowerCase() === 'true',
+        bookingdates: {
+          checkin: String(row.checkin),
+          checkout: String(row.checkout)
+        },
+        additionalneeds: String(row.additionalneeds || '')
+      };
 
-    const res = await request.post('https://restful-booker.herokuapp.com/booking', { data: payload });
-    expect(res.status()).toBe(Number(row.expectedStatus || 200));
-    const body = await res.json();
-    expect(body).toHaveProperty('bookingid');
-  });
-}
+      const res = await request.post('https://restful-booker.herokuapp.com/booking', { data: payload });
+      expect(res.status()).toBe(Number(row.expectedStatus || 200));
+      const body = await res.json();
+      expect(body).toHaveProperty('bookingid');
+    });
+  }
+})();
