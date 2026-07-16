@@ -4,6 +4,7 @@
     "target": "ES2020",
     "module": "Node16",
     "moduleResolution": "node16",
+    "typeRoots": ["./types", "./node_modules/@types"],
     "types": ["node"],
     "esModuleInterop": true,
     "strict": true

@@ -1,14 +1,13 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  // Use a local static document to avoid external network flakiness in CI/local runs
-  await page.setContent('<!doctype html><html><head><title>Playwright Local</title></head><body><h1>Playwright</h1></body></html>');
+/*test('has title', async ({ page }) => {
+  await page.goto('https://playwright.dev/');
 
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/Playwright/);
-});
+});*/
 
-test('simple post request', async ({ page, request }) => {
+test('simple post api request using static data', async ({ page, request }) => {
   const response = await request.post('https://restful-booker.herokuapp.com/booking', {
     data: {
       firstname: 'Jane',

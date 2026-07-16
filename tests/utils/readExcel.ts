@@ -63,7 +63,7 @@ export function readExcel(filePath: string, sheetName?: string): Array<Record<st
     const logPath = path.join(logDir, 'xlsx.log');
     fs.mkdirSync(logDir, { recursive: true });
     const time = new Date().toISOString();
-    const availability = `FEATURE_XLSX=${!!process.env.FEATURE_XLSX}; xlsxAvailable=${isXlsxAvailable()}`;
+    const availability = `FEATURE_XLSX=${!!process.env.FEATURE_XLSX}`;
     fs.appendFileSync(logPath, `${time} - readExcel called for ${resolved} (ext=${ext}) - ${availability}\n`, 'utf8');
   } catch (e) {
     /* ignore logging errors */

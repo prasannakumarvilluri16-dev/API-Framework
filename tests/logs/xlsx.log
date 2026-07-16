@@ -2,3 +2,34 @@
 2026-07-15T13:27:33.216Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true; xlsxAvailable=false
 2026-07-15T13:27:33.635Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true; xlsxAvailable=false
 2026-07-15T13:27:38.024Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true; xlsxAvailable=false
+2026-07-15T13:39:25.902Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true
+2026-07-15T13:39:29.326Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true
+2026-07-15T13:39:36.919Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true
+2026-07-15T13:40:18.208Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true
+2026-07-15T13:42:17.692Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true
+2026-07-15T13:42:20.380Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true
+2026-07-15T13:42:26.712Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true
+2026-07-15T13:43:09.004Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true
+2026-07-15T13:44:06.206Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true
+2026-07-15T13:44:08.728Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true
+2026-07-15T13:44:16.468Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true
+2026-07-15T13:44:46.933Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true
+2026-07-15T13:48:41.391Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=false
+2026-07-15T13:52:25.333Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true
+2026-07-15T13:52:28.792Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true
+2026-07-15T13:52:36.678Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true
+2026-07-15T13:53:00.532Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=true
+2026-07-15T13:59:09.597Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.xlsx (ext=.xlsx) - FEATURE_XLSX=true
+2026-07-15T13:59:09.612Z - XLSX support enabled and available — parsing C:\Playwright\API Testing\tests\data\testdata.xlsx (sheet: Sheet1)
+2026-07-15T13:59:13.991Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.xlsx (ext=.xlsx) - FEATURE_XLSX=true
+2026-07-15T13:59:14.000Z - XLSX support enabled and available — parsing C:\Playwright\API Testing\tests\data\testdata.xlsx (sheet: Sheet1)
+2026-07-16T07:43:16.450Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.xlsx (ext=.xlsx) - FEATURE_XLSX=true
+2026-07-16T07:43:16.460Z - XLSX support enabled and available — parsing C:\Playwright\API Testing\tests\data\testdata.xlsx (sheet: Sheet1)
+2026-07-16T07:44:23.436Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.xlsx (ext=.xlsx) - FEATURE_XLSX=true
+2026-07-16T07:44:23.447Z - XLSX support enabled and available — parsing C:\Playwright\API Testing\tests\data\testdata.xlsx (sheet: Sheet1)
+2026-07-16T07:46:11.991Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.xlsx (ext=.xlsx) - FEATURE_XLSX=true
+2026-07-16T07:46:12.001Z - XLSX support enabled and available — parsing C:\Playwright\API Testing\tests\data\testdata.xlsx (sheet: Sheet1)
+2026-07-16T07:46:54.226Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=false
+2026-07-16T07:46:56.857Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=false
+2026-07-16T07:47:04.316Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=false
+2026-07-16T07:47:26.590Z - readExcel called for C:\Playwright\API Testing\tests\data\testdata.csv (ext=.csv) - FEATURE_XLSX=false
