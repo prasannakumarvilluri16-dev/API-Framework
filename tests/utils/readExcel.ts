@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import ExcelJS from 'exceljs';
 
 function parseCsv(content: string): Array<Record<string, any>> {
   const lines = content.split(/\r?\n/).filter(Boolean);
@@ -43,72 +44,54 @@ function parseCsv(content: string): Array<Record<string, any>> {
   return rows;
 }
 
-// Runtime check for optional xlsx availability
-export function isXlsxAvailable(): boolean {
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    require.resolve('xlsx');
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-export function readExcel(filePath: string, sheetName?: string): Array<Record<string, any>> {
+export async function readExcel(filePath: string, sheetName?: string): Promise<Array<Record<string, any>>> {
   const resolved = path.resolve(filePath);
   const ext = path.extname(resolved).toLowerCase();
-  // write a brief runtime log for debugging (file read attempts and feature flag)
-  try {
-    const logDir = path.resolve(__dirname, '..', 'logs');
-    const logPath = path.join(logDir, 'xlsx.log');
-    fs.mkdirSync(logDir, { recursive: true });
-    const time = new Date().toISOString();
-    const availability = `FEATURE_XLSX=${!!process.env.FEATURE_XLSX}`;
-    fs.appendFileSync(logPath, `${time} - readExcel called for ${resolved} (ext=${ext}) - ${availability}\n`, 'utf8');
-  } catch (e) {
-    /* ignore logging errors */
-  }
+
   if (ext === '.csv') {
     const content = fs.readFileSync(resolved, 'utf8');
     return parseCsv(content);
   }
-  // Handle .xlsx only when explicitly enabled via feature flag to avoid pulling in xlsx by default
+
   if (ext === '.xlsx') {
-    if (!process.env.FEATURE_XLSX) {
-      throw new Error(
-        `XLSX support is disabled. To enable: set FEATURE_XLSX=true and install the optional dependency 'xlsx' (npm install xlsx --save-optional).`
-      );
+    const workbook = new ExcelJS.Workbook();
+    await workbook.xlsx.readFile(resolved);
+
+    const worksheet = sheetName
+      ? workbook.getWorksheet(sheetName)
+      : workbook.worksheets[0];
+
+    if (!worksheet) {
+      throw new Error(`Sheet '${sheetName ?? 'first sheet'}' not found in ${resolved}`);
     }
 
-    if (!isXlsxAvailable()) {
-      throw new Error(
-        `XLSX support is enabled but 'xlsx' is not installed. Install it as an optional dependency: npm install xlsx --save-optional`
-      );
-    }
-    // Informational log so developers know XLSX will be used
-    // This helps diagnose editor/CI diagnostics when optional dependency is missing
-    // eslint-disable-next-line no-console
-    const infoMsg = `XLSX support enabled and available — parsing ${resolved}${sheetName ? ` (sheet: ${sheetName})` : ''}`;
-    console.info(infoMsg);
+    const headerRow = worksheet.getRow(1);
+    const headers = headerRow.values
+      .slice(1)
+      .map((header) => String(header ?? '').trim());
 
-    // Also write an informational log to tests/logs/xlsx.log for CI/debugging
-    try {
-      const logDir = path.resolve(__dirname, '..', 'logs');
-      const logPath = path.join(logDir, 'xlsx.log');
-      fs.mkdirSync(logDir, { recursive: true });
-      const time = new Date().toISOString();
-      fs.appendFileSync(logPath, `${time} - ${infoMsg}\n`, 'utf8');
-    } catch (e) {
-      // don't fail tests because logging failed
-    }
+    const rows: Array<Record<string, any>> = [];
+    worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
+      if (rowNumber === 1) return;
+      const values = row.values.slice(1);
+      const rowObj: Record<string, any> = {};
+      let hasValue = false;
+      for (let j = 0; j < headers.length; j++) {
+        const key = headers[j];
+        if (!key) continue;
+        const value = values[j] ?? '';
+        rowObj[key] = value;
+        if (value !== '' && value != null) {
+          hasValue = true;
+        }
+      }
+      if (hasValue) {
+        rows.push(rowObj);
+      }
+    });
 
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const XLSX = require('xlsx');
-    const wb = XLSX.readFile(resolved, { cellDates: true });
-    const sh = wb.Sheets[sheetName || wb.SheetNames[0]];
-    const rows = XLSX.utils.sheet_to_json(sh, { defval: '' }) as Array<Record<string, any>>;
     return rows;
   }
 
-  throw new Error(`Unsupported file extension '${ext}'. Provide a .csv file or enable XLSX support.`);
+  throw new Error(`Unsupported file extension '${ext}'. Provide a .csv or .xlsx file.`);
 }
