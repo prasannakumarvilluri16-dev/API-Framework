@@ -2,7 +2,12 @@ import { test, expect } from '@playwright/test';
 
 test('simple post api request using dynamic data', async ({ request }) => {
   const { faker } = await import('@faker-js/faker');
+  const { DateTime } = require('luxon');
 
+   //const firtname = faker.person.firstName(); // generates a random first name
+   //const lastname = faker.person.lastName(); // generates a random last name
+   //const totalprice = faker.number.int(100); 
+   // generates a random integer between 50 and 500
   const payload = {
     firstname: faker.person.firstName(),
     lastname: faker.person.lastName(),
