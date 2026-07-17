@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 //const { test, expect } = require('@playwright/test');
 
-import { stringFormat } from '../tests/utils//common';
+import { stringFormat } from './utils/common';
 
 const bookingAPIRequest = require('../utils/bookingAPIRequest');
 
