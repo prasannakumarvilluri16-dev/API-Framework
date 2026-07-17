@@ -1,13 +1,11 @@
 {
-    "firstname": "testers talk playwright",
-    "lastname": "testers talk api playwright",
+    "firstname": "{0}",
+    "lastname": "{1}",
     "totalprice": 150,
     "depositpaid": false,
     "bookingdates": {
         "checkin": "2023-06-01",
         "checkout": "2023-06-10"
     },
-    "additionalneeds": "Breakfast"
+    "additionalneeds": "{3}"
 }
-
-

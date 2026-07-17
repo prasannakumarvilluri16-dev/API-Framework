@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 const postRequestBody = require('./data/post_request_body.json');
 
-test('simple post api request using dynamic data', async ({ request }) => {
+test('simple post api request using json data', async ({ request }) => {
   const response = await request.post('https://restful-booker.herokuapp.com/booking', {
     data: postRequestBody,
   });
