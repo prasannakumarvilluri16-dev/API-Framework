@@ -30,7 +30,7 @@ test('simple post api request using dynamic Json data', async ({ request }) => {
     data: payload,
   });
 
-  // validate status code and response body Test
+  // validate status code and response body Test Testing
   expect(response.status()).toBe(200);
   const responseBody = await response.json();
   expect(responseBody).toHaveProperty('bookingid');
